@@ -32,4 +32,20 @@ public class UserService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	//325 Update user
+	public User update(Long id, User obj) {
+		User entity = repository.getOne(id); //Pone en memoria y no envia aun al DB
+		updateData(entity,obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(User entity, User obj) {
+		// TODO Auto-generated method stub
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+	}
+	
+	
 }
